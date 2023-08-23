@@ -3,13 +3,13 @@ version: '3'
 services:
   aspnet:
     build:
-      context: ./jikecemoeaspnet
+      context: ./jdotnet
     networks:
       - network
   
   nginx:
     build:
-      context: ./jikecemoenginx
+      context: ./jnginx
     ports:
     - "80:80"
     - "443:443"
@@ -34,7 +34,7 @@ services:
 
   certbot:
     build:
-      context: ./jikecemoecertbot
+      context: ./jcertbot
       args:
         TARGET_ARCH: amd64
         QEMU_ARCH: x86_64
