@@ -1,23 +1,9 @@
-#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
-
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
-WORKDIR /app
-EXPOSE 5282
-
-ENV ASPNETCORE_URLS=http://+:5282
-
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
-WORKDIR /src
-COPY ["jikecemoeaspnet.csproj", "."]
-RUN dotnet restore "./jikecemoeaspnet.csproj"
-COPY . .
-WORKDIR "/src/."
-RUN dotnet build "jikecemoeaspnet.csproj" -c Release -o /app/build
-
-FROM build AS publish
-RUN dotnet publish "jikecemoeaspnet.csproj" -c Release -o /app/publish /p:UseAppHost=false
-
-FROM base AS final
-WORKDIR /app
-COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "jikecemoeaspnet.dll"]
+# Use the official Nginx base image
+FROM nginx:latest
+# Copy custom Nginx configuration file
+COPY nginx.conf /etc/nginx/nginx.conf
+# Expose ports (optional, ports are mapped in Docker Compose)
+EXPOSE 80
+EXPOSE 443
+# Start Nginx
+CMD ["nginx", "-g", "daemon off;"]
