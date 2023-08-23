@@ -6,8 +6,8 @@ EXPOSE 80
 # Use the SDK image to build the app
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["jaspnet/jaspnet.csproj", "jaspnet/"]   # Adjust "jaspnet/" to match your directory structure
-RUN dotnet restore "jaspnet/jaspnet.csproj"
+COPY ["./jaspnet.csproj", "jaspnet/"]   # Adjust "jaspnet/" to match your directory structure
+RUN dotnet restore "./jaspnet.csproj"
 COPY . .
 WORKDIR "/src/jaspnet"
 RUN dotnet build "jaspnet.csproj" -c Release -o /app/build
