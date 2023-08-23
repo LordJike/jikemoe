@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/jike/jikemoe/jdotnet/jdotnet.csproj",
-      "projectName": "jdotnet",
-      "projectPath": "/home/jike/jikemoe/jdotnet/jdotnet.csproj",
+      "projectUniqueName": "/home/jike/jikemoe/jaspnet/jaspnet.csproj",
+      "projectName": "jaspnet",
+      "projectPath": "/home/jike/jikemoe/jaspnet/jaspnet.csproj",
       "packagesPath": "/home/jike/.nuget/packages/",
-      "outputPath": "/home/jike/jikemoe/jdotnet/obj/",
+      "outputPath": "/home/jike/jikemoe/jaspnet/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/jike/.nuget/NuGet/NuGet.Config"

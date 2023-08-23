@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "EhBJd3cVqW1uabElwX3l4GffV8jBZsOIqj7JrjeF3BbDPQAr5+PNsa6pKC06gWefLRFDbFojYdOcQf4qUm0rIg==",
+  "dgSpecHash": "J718D1VkNtPCuR/dfzXd35GKiTaVe7LclA5a4nVKyUunidBnHV0K1ztzWHbLk7Udgz/SLG2fRZ0K1iWcPkboYQ==",
   "success": true,
-  "projectFilePath": "/home/jike/jikemoe/jdotnet/jdotnet.csproj",
+  "projectFilePath": "/home/jike/jikemoe/jaspnet/jaspnet.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
