@@ -1,22 +1,21 @@
-# Use the official image as a parent image
 FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
 WORKDIR /app
-EXPOSE 80
+EXPOSE 5282
 
-# Use the SDK image to build the app
+ENV ASPNETCORE_URLS=http://+:5282
+
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["./jaspnet.csproj", "jaspnet/"]   # Adjust "jaspnet/" to match your directory structure
+COPY ["jaspnet.csproj", "."]
 RUN dotnet restore "./jaspnet.csproj"
 COPY . .
-WORKDIR "/src/jaspnet"
+WORKDIR "/src/."
 RUN dotnet build "jaspnet.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "jaspnet.csproj" -c Release -o /app/publish
+RUN dotnet publish "jaspnet.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "jaspnet.dll"]     # Adjust "jaspnet.dll" to match your built DLL name
-
+ENTRYPOINT ["dotnet", "jaspnet.dll"]
