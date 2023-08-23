@@ -19,9 +19,9 @@ read -p "Do you wish to set up a ping cronjob to keep the app warm? (y/n) " cron
 case $cron_yn in
     [Yy]* )
         # Check if the cronjob already exists to avoid adding duplicates
-        if ! crontab -l | grep -q "curl http://jikece.moe/healthz"; then
+        if ! crontab -l | grep -q "curl http://jike.moe/healthz"; then
             # Echo the new cron into the cron file
-            (crontab -l ; echo "* * * * * /usr/bin/curl http://jikece.moe/healthz") | crontab -
+            (crontab -l ; echo "* * * * * /usr/bin/curl http://jike.moe/healthz") | crontab -
             echo "Cronjob set up successfully!"
         else
             echo "Cronjob already exists."
