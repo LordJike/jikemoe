@@ -1,24 +1,25 @@
 events {}
 http {
     server {
-    listen 80;
-    server_name jike.moe;
+        listen 80;
+        server_name jike.moe;
 
-    location /.well-known/acme-challenge/ {
-    root /var/www/certbot;
-    try_files $uri =404;
-}
-    
-    # Redirect HTTP to HTTPS
-    location / {
-        return 301 https://$host$request_uri;
+        location /.well-known/acme-challenge/ {
+            root /var/www/certbot;
+            try_files $uri =404;
+        }
+
+        location / {
+            proxy_pass http://jikemoe_aspnet_1:5282;  # Forward requests to the ASP.NET container
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+        }
     }
-}
 
     server {
         listen 443 ssl;
         server_name jike.moe;
-    
+
         ssl_certificate /etc/letsencrypt/live/jike.moe/fullchain.pem;
         ssl_certificate_key /etc/letsencrypt/live/jike.moe/privkey.pem;
 
@@ -27,8 +28,8 @@ http {
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;
         }
-    
-     #Additional SSL configuration here
-    }
 
+        # Additional SSL configuration here
+    }
 }
+
