@@ -10,4 +10,4 @@ RUN chmod +x /etc/nginx/getnginxconf.sh
 EXPOSE 80
 EXPOSE 443
 # Run Script
-ENTRYPOINT ["/etc/nginx/getngixconf.sh"]
+ENTRYPOINT ["/etc/nginx/getnginxconf.sh"]
