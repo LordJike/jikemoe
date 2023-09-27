@@ -52,9 +52,9 @@ services:
         source: fvtt-data
         target: /data
     environment:
-      - FOUNDRY_PASSWORD: ${FOUNDRYVTT_PASS}
-      - FOUNDRY_USERNAME: ${FOUNDRYVTT_USER}
-      - FOUNDRY_ADMIN_KEY: ${FOUNDRYVTT_ADMIN}
+      - FOUNDRY_PASSWORD: "${FOUNDRYVTT_PASS}"
+      - FOUNDRY_USERNAME: "${FOUNDRYVTT_USER}"
+      - FOUNDRY_ADMIN_KEY: "${FOUNDRYVTT_ADMIN}"
     ports:
       - target: 30000
         published: 30000
