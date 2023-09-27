@@ -49,7 +49,7 @@ services:
     hostname: my_foundry_host
     volumes:
       - type: bind
-        source: fvtt-data
+        source: /home/jike/fvtt-data
         target: /data
     environment:
       - FOUNDRY_PASSWORD=${FOUNDRYVTT_PASS}
@@ -63,7 +63,6 @@ volumes:
   mariadb-data:
   certbot-challenge:
   certbot-certs:
-  fvtt-data:
 
 networks:
   network:
