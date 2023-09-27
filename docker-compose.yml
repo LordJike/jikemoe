@@ -16,7 +16,7 @@ services:
     depends_on:
       - aspnet
     volumes:
-      - ./jnginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./jnginx:/etc/nginx/preconfs
       - certbot-certs:/etc/letsencrypt
       - certbot-challenge:/var/www/certbot
     networks:
