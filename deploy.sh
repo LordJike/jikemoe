@@ -12,7 +12,6 @@ while true; do
     case $yn in
         [Yy]* ) 
             docker-compose down
-            docker-compose build
             while true; do
                 read -p "Is this being deployed in the development server? (y/n) " dev_yn
                 case $dev_yn in
@@ -40,6 +39,7 @@ while true; do
             echo
             read -sp "Foundryvtt admin key: " fvtt_admin
             export FOUNDRYVTT_ADMIN=$fvtt_admin
+            docker-compose build
             docker-compose up -d
             break;;
         [Nn]* ) exit;;
