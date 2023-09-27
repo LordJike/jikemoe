@@ -23,8 +23,8 @@ http {
         set $cert /etc/letsencrypt/live/jike.moe/fullchain.pem;
         set $certkey /etc/letsencrypt/live/jike.moe/privkey.pem;
 
-        ssl_certificate $cert
-        ssl_certificate_key $certkey
+        ssl_certificate $cert;
+        ssl_certificate_key $certkey;
 
         location / {
             proxy_pass http://jikemoe_aspnet_1:5282;  # Forward requests to the ASP.NET container
