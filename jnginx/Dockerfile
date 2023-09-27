@@ -3,9 +3,9 @@ FROM nginx:latest
 # Copy custom Nginx configuration files
 COPY nginx.ssloff /etc/nginx/nginx.ssloff
 COPY nginx.sslon /etc/nginx/nginx.sslon
-COPY getngixconf.sh /etc/nginx/getngixconf.sh
+COPY getngixconf.sh /etc/nginx/getnginxconf.sh
 # Make script executable
-RUN chmod +x /etc/nginx/getngixconf.sh
+RUN chmod +x /etc/nginx/getnginxconf.sh
 # Expose ports (optional, ports are mapped in Docker Compose)
 EXPOSE 80
 EXPOSE 443
