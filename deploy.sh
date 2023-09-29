@@ -27,17 +27,6 @@ while true; do
                     * ) echo "Please answer y or n.";;
                 esac
             done
-            read -sp "Enter the MariaDB password: " db_password
-            export MARIADB_PASSWORD=$db_password
-            echo  # Newline for better formatting
-            read -sp "Foundryvtt username: " fvtt_user
-            export FOUNDRYVTT_USER=$fvtt_user
-            echo
-            read -sp "Foundryvtt password: " fvtt_pass
-            export FOUNDRYVTT_PASS=$fvtt_pass
-            echo
-            read -sp "Foundryvtt admin key: " fvtt_admin
-            export FOUNDRYVTT_ADMIN=$fvtt_admin
             docker-compose down
             docker-compose build
             docker-compose up -d
