@@ -1,6 +1,5 @@
 #!/bin/bash
 set -e
-set -x
 echo "Switching to main branch..."
 git checkout main
 
