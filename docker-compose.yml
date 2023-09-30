@@ -24,6 +24,11 @@ services:
       - network
     environment:
       - ENABLE_SSL=${NGINX_SSL}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://foundry:30000"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
 
   mariadb:
     image: mariadb:latest
