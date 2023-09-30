@@ -36,15 +36,26 @@ services:
       - mariadb-data:/var/lib/mysql
 
   certbot:
-    build:
-      context: ./jcertbot
-      args:
-        TARGET_ARCH: amd64
-        QEMU_ARCH: x86_64
-        CERTBOT_VERSION: 1.14.0
+    image: miigotu/certbot-dns-godaddy
+    command: certbot certonly
+      --authenticator dns-godaddy
+      --dns-godaddy-propagation-seconds 900
+      --dns-godaddy-credentials /var/lib/letsencrypt/godaddy_credentials.ini
+      --keep-until-expiring
+      --non-interactive
+      --expand
+      --server https://acme-v02.api.letsencrypt.org/directory
+      --agree-tos
+      --email "lordjike@gmail.com"
+      -d jike.moe
+      -d '*.jike.moe'
     volumes:
+      - ./jcertbot:/var/lib/letsencrypt
       - certbot-certs:/etc/letsencrypt
-      - certbot-challenge:/var/www/certbot
+    cap_drop:
+      - ALL
+    restart: "no"
+
   foundry:
     image: felddy/foundryvtt:release
     hostname: foundry.jike.moe
