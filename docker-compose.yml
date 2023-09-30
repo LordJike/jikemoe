@@ -80,6 +80,8 @@ volumes:
   mariadb-data:
   certbot-challenge:
   certbot-certs:
+network:
+  - network
 
 networks:
   network:
