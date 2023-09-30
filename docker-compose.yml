@@ -40,7 +40,7 @@ services:
     command: certbot certonly
       --authenticator dns-godaddy
       --dns-godaddy-propagation-seconds 900
-      --dns-godaddy-credentials /var/lib/letsencrypt/godaddy_credentials.ini
+      --dns-godaddy-credentials /var/lib/letsencrypt/credentials.ini
       --keep-until-expiring
       --non-interactive
       --expand
