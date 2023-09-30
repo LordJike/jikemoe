@@ -1,5 +1,22 @@
 events {}
 http {
+        server {
+        listen 443 ssl;
+        server_name foundry.jike.moe;
+
+        ssl_certificate /etc/letsencrypt/live/jike.moe/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/jike.moe/privkey.pem;
+
+        location / {
+            set $foundry "foundry:30000";
+            proxy_pass http://$foundry;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+        }
+
+        # Additional SSL configuration here
+    }
+
     server {
         listen 80;
         server_name jike.moe;
@@ -25,22 +42,6 @@ http {
 
         location / {
             proxy_pass http://aspnet:5282;  # Forward requests to the ASP.NET container
-            proxy_set_header Host $host;
-            proxy_set_header X-Real-IP $remote_addr;
-        }
-
-        # Additional SSL configuration here
-    }
-        server {
-        listen 443 ssl;
-        server_name foundry.jike.moe;
-
-        ssl_certificate /etc/letsencrypt/live/jike.moe/fullchain.pem;
-        ssl_certificate_key /etc/letsencrypt/live/jike.moe/privkey.pem;
-
-        location / {
-            set $foundry "foundry:30000";
-            proxy_pass http://$foundry;
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;
         }
