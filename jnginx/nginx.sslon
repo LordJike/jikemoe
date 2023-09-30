@@ -39,7 +39,8 @@ http {
         ssl_certificate_key /etc/letsencrypt/live/jike.moe/privkey.pem;
 
         location / {
-            proxy_pass http://foundry:30000;  # Forward requests to the ASP.NET container
+            set $foundry "foundry:30000";
+            proxy_pass http://$foundry;
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;
         }
