@@ -15,6 +15,7 @@ services:
     - "${NGINX_HTTPS}:443"
     depends_on:
       - aspnet
+      - foundry
     volumes:
       - ./jnginx:/etc/nginx/preconfs
       - certbot-certs:/etc/letsencrypt
