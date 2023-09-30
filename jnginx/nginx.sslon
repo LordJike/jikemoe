@@ -20,8 +20,8 @@ http {
         listen 443 ssl;
         server_name jike.moe;
 
-        ssl_certificate /etc/letsencrypt/live/jike.moe/fullchain.pem;;
-        ssl_certificate_key /etc/letsencrypt/live/jike.moe/privkey.pem;;
+        ssl_certificate /etc/letsencrypt/live/jike.moe/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/jike.moe/privkey.pem;
 
         location / {
             proxy_pass http://jikemoe_aspnet_1:5282;  # Forward requests to the ASP.NET container
@@ -35,8 +35,8 @@ http {
         listen 443 ssl;
         server_name foundry.jike.moe;
 
-        ssl_certificate /etc/letsencrypt/live/jike.moe/fullchain.pem;;
-        ssl_certificate_key /etc/letsencrypt/live/jike.moe/privkey.pem;;
+        ssl_certificate /etc/letsencrypt/live/jike.moe/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/jike.moe/privkey.pem;
 
         location / {
             proxy_pass http://jikemoe_foundry_1:5282;  # Forward requests to the ASP.NET container
