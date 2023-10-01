@@ -1,6 +1,17 @@
 events {}
 http {
         server {
+        listen 80;
+        server_name foundry.jike.moe;
+
+        location / {
+            set $foundry "foundry:30000";
+            proxy_pass http://$foundry;  # Forward requests to the ASP.NET container
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+        }
+    }
+        server {
         listen 443 ssl;
         server_name foundry.jike.moe;
 
@@ -20,11 +31,6 @@ http {
     server {
         listen 80;
         server_name jike.moe;
-
-        location /.well-known/acme-challenge/ {
-            root /var/www/certbot;
-            try_files $uri =404;
-        }
 
         location / {
             proxy_pass http://aspnet:5282;  # Forward requests to the ASP.NET container
