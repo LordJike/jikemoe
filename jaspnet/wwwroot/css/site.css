@@ -19,9 +19,13 @@ html {
 
 body {
   margin-bottom: 60px;
-  background-color: #460681;
+  background-color: #230341;
 }
 
 div {
-  color: white;
+  color: rgb(187, 184, 26);
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
