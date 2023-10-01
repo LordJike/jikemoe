@@ -4,13 +4,7 @@ http {
         listen 80;
         server_name foundry.jike.moe;
 
-        location / {
-            set $foundry "foundry:30000";
-            proxy_pass http://$foundry;  # Forward requests to the ASP.NET container
-            proxy_set_header Host $host;
-            proxy_set_header X-Real-IP $remote_addr;
-        }
-    }
+
         server {
         listen 443 ssl;
         server_name foundry.jike.moe;
@@ -20,14 +14,30 @@ http {
 
         location / {
             set $foundry "foundry:30000";
-            proxy_pass http://$foundry;
             proxy_set_header Host $host;
-            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+    
+            # These are important to support WebSockets
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection "Upgrade";
         }
 
         # Additional SSL configuration here
     }
-
+        
+        # Optional, but recommend. Redirects all HTTP requests to HTTPS for you
+        server {
+            if ($host = foundry.jike.moe) {
+                return 301 https://$host$request_uri;
+            }
+        
+            listen 80;
+            listen [::]:80;
+        
+            server_name foundry.jike.moe;
+            return 404;
+        }    
     server {
         listen 80;
         server_name jike.moe;
